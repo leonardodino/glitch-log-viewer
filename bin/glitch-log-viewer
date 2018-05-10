@@ -1,0 +1,15 @@
+#!/usr/bin/env node
+
+const isNode = typeof process === 'object' && process + '' === '[object process]'
+const isShell = require.main === module
+
+if(!isShell || !isNode) throw new Error('wrong env')
+
+const app = process.argv[2]
+const token = process.env.GLITCH_TOKEN
+
+if(!app) throw new Error('missing app name')
+if(!token) throw new Error('missing token')
+
+const url = `wss://api.glitch.com/${app}/logs?token=${token}`
+isNode && isShell && require('.')(url, process)
