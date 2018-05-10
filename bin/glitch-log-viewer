@@ -12,4 +12,4 @@ if(!app) throw new Error('missing app name')
 if(!token) throw new Error('missing token')
 
 const url = `wss://api.glitch.com/${app}/logs?token=${token}`
-isNode && isShell && require('.')(url, process)
+isNode && isShell && require('..')(url, process)
